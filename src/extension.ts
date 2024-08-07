@@ -11,7 +11,7 @@ import {
 } from 'vscode';
 
 const classNameStringRegex = /class(name)?="([^"]+)"/i;
-const classNamesImportRegex = /import \w+ from ['"]classnames['"](;)?/gi;
+const classNamesImportRegex = /import \w+ from ['"]lib\/classnames['"](;)?/gi;
 
 export function activate(context: ExtensionContext) {
   const classNameify = commands.registerCommand(
@@ -108,7 +108,7 @@ function addImportIfNeeded(editBuilder: TextEditorEdit): void {
     const importPosition = new Position(lastImportLine, 0);
     editBuilder.insert(
       importPosition,
-      "import classNames from 'classnames';\n",
+      "import { classNames } from 'lib/classNames';\n",
     );
   }
 }

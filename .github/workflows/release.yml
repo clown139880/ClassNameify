@@ -1,0 +1,34 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+
+      - name: Install dependencies
+        run: yarn global add vsce
+
+      - name: Build VS Code extension
+        run: vsce package
+
+      - name: Upload VSIX to GitHub Releases
+        uses: softprops/action-gh-release@v1
+        with:
+          files: '*.vsix'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: github-release-notes/github-release-notes-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
