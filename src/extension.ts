@@ -11,7 +11,7 @@ import {
 } from 'vscode';
 
 const classNameStringRegex = /class(name)?="([^"]+)"/i;
-const classNamesImportRegex = /import \w+ from ['"]lib\/classnames['"](;)?/gi;
+const classNamesImportRegex = /import\s+[\w{},\s]*\s+from\s+['"]lib\/classNames['"]\s*(;)?/gi;
 
 export function activate(context: ExtensionContext) {
   const classNameify = commands.registerCommand(
