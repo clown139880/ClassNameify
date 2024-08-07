@@ -105,7 +105,7 @@ function getLastImportLine(): number {
 function addImportIfNeeded(editBuilder: TextEditorEdit): void {
   const lastImportLine = getLastImportLine();
   if (needsClassNamesImport()) {
-    const importPosition = new Position(lastImportLine, 0);
+    const importPosition = new Position(0, 0);
     editBuilder.insert(
       importPosition,
       "import { classNames } from 'lib/classNames';\n",

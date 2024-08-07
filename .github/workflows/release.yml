@@ -28,7 +28,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create GitHub Release
-        uses: github-release-notes/github-release-notes-action@v1
+      - name: Generate Release Notes
+        uses: release-please-action/release-please-action@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: node
+          token: ${{ secrets.GITHUB_TOKEN }}
